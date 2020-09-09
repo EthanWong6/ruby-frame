@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - ./data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 1
+  web:
+    build: .
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/tmp
+    entrypoint: /usr/src/app/docker-entrypoint.sh
+    command: ["tail", "-f", "log/development.log"]
+    ports:
+      - "3001:3000"
+    depends_on:
+      - mysql
+

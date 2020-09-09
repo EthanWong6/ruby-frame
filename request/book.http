@@ -1,0 +1,86 @@
+# 学习集相关接口
+
+### 创建学习集
+POST {{base_url}}/api/book
+Content-Type: application/json
+
+
+{
+  "book": {
+    "title": "juhkd",
+    "desc": "study",
+    "state": "save"
+  }
+}
+
+
+### 学习集修改
+PUT {{base_url}}/api/book/1
+Content-Type: application/json
+
+{
+  "book": {
+    "title": "hello",
+    "desc": "study"
+  }
+}
+
+
+### 学习集列表
+GET {{base_url}}/api/book?q[cards_title_eq]=pp
+Content-Type: application/json
+
+
+
+<> ../request/json/books/get_list.json
+
+### 学习集推荐列表
+GET {{base_url}}/v1/books/recommend?page=1&per=5
+Content-Type: application/json
+
+
+### 学习集详情
+GET {{base_url}}/v1/books/112
+Authorization: {{token}}
+
+<> ../request/json/books/get_preview.json
+
+
+
+<> ../request/json/books/buy_result.json
+
+### 修改学习集可见权限
+PUT {{base_url}}/v1/books/2/operation
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "state": "state_publish"
+}
+
+### 批量添加至班级
+POST {{base_url}}/v1/books/{{book_id}}/teams_batch
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "add_team_ids": [
+    2
+  ],
+  "delete_team_ids": []
+}
+
+### 已购学习集列表
+GET {{base_url}}/v1/users/books?q[title_cont]=el
+Authorization: {{token}}
+
+### 重置学习进度
+POST {{base_url}}/v1/books/{{book_id}}/learn
+Content-Type: application/json
+Authorization: {{token}}
+
+### 删除学习集
+DELETE {{base_url}}/v1/books/{{book_id}}
+Authorization: {{token}}
+
+###

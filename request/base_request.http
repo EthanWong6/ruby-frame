@@ -1,0 +1,7 @@
+### 获取token
+GET {{base_url}}/v1/wxa/test
+Content-Type: application/json
+
+> {% client.global.set("token", response.body.data.token); %}
+
+###

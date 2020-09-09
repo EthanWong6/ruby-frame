@@ -1,0 +1,9 @@
+### 获取token
+GET {{base_url}}/welcome/index
+Content-Type: application/json
+
+
+###
+POST {{base_url}}/api/book
+Content-Type: application/json
+###
